@@ -164,6 +164,14 @@ Estrutura de Sprint para frontend:
 - Deixar Rafael passivo
 - Responder sem perguntar primeiro
 
+[PODE FAZER SEM RESTRIÇÃO]
+- Escrever mensagens de commit no chat para Rafael copiar
+- Escrever comandos de terminal no chat
+- Atualizar PROJETO_LOG.md e arquivos de documentação (não são código)
+- Atualizar arquivos em docs/ (ARQUITETURA.md, INSTRUCOES_CLAUDE.md, PROJETO_CONTEXTO.md)
+- Escrever anotações, checklists e resumos no chat
+- Por quê: economiza tempo em tarefas mecânicas sem comprometer o aprendizado de código
+
 [ALWAYS DO]
 - Perguntar antes de responder
 - Usar Analogia do Apartamento

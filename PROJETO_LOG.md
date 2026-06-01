@@ -116,6 +116,70 @@
 
 ---
 
+<a name="sprint-2"></a>
+## Sprint 2 — Setup do Projeto
+
+**Período:** 01/06/2026
+**Objetivo:** Instalar e configurar o ambiente de desenvolvimento completo (Vite, Tailwind, estrutura de pastas).
+**Branch:** `main`
+
+---
+
+### Log 6 — Instalação do Vite com React 19 e TypeScript
+
+- **O quê:** Projeto Vite criado dentro do diretório existente
+- **Comando:** `npm create vite@latest . -- --template react-ts`
+- **Detalhe:** Flag `.` usa a pasta atual em vez de criar uma nova — evita pasta duplicada
+- **Resultado:** Dev server rodando em `localhost:5173` ✅
+
+---
+
+### Log 7 — Instalação e configuração do Tailwind CSS v4
+
+- **O quê:** Tailwind instalado como devDependency e conectado ao Vite
+- **Por que devDependency:** Tailwind só roda em build time — gera o CSS, mas não vai para produção
+- **Arquivos alterados:**
+  - `vite.config.ts` → adicionado `tailwindcss()` no array de plugins
+  - `src/index.css` → substituído todo o conteúdo por `@import "tailwindcss"`
+- **Validação:** Classe `bg-red-500` aplicada no browser com sucesso ✅
+
+---
+
+### Log 8 — Limpeza do boilerplate do Vite
+
+- **O quê:** Removidos todos os arquivos e código do template padrão do Vite
+- **Removidos:** `App.css`, `assets/hero.png`, `assets/react.svg`, `assets/vite.svg`
+- **App.tsx:** Substituído pelo componente mínimo funcional (função + return + export default)
+- **Lição:** Um componente React precisa de: função com nome em maiúsculo, return com JSX, export default
+
+---
+
+### Log 9 — Estrutura de pastas
+
+- **O quê:** Pastas criadas seguindo a arquitetura definida em `docs/ARQUITETURA.md`
+- **Estrutura:**
+  ```
+  src/
+  ├── components/ui/        ← móveis primitivos (Button, Badge...)
+  ├── components/sections/  ← cômodos (HeroSection, ProjectsSection...)
+  ├── context/              ← regras do condomínio (LanguageContext)
+  ├── hooks/                ← comportamentos (useLanguage, useScrollspy)
+  ├── data/translations/    ← textos em PT-BR e EN
+  ├── types/                ← contratos TypeScript
+  └── assets/               ← imagens, ícones
+  ```
+- **Detalhe:** `.gitkeep` em cada pasta para o git rastrear diretórios vazios
+
+---
+
+**✅ Sprint 2 Concluída**
+- Vite + React 19 + TypeScript funcionando
+- Tailwind CSS v4 configurado e validado
+- Boilerplate limpo
+- Estrutura de pastas alinhada com ARQUITETURA.md
+
+---
+
 ## PRÓXIMAS SPRINTS (BACKLOG)
 
 | Sprint | Objetivo | Prioridade |
