@@ -30,7 +30,7 @@ function App() {
         </button>
       </section>
 
-      <div className="ticks"></div>
+      <div className="bg-red-500"></div>
 
       <section id="next-steps">
         <div id="docs">
@@ -42,7 +42,7 @@ function App() {
           <ul>
             <li>
               <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
+                <img className="bg-red-500" src={viteLogo} alt="" />
                 Explore Vite
               </a>
             </li>
@@ -55,7 +55,7 @@ function App() {
           </ul>
         </div>
         <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
+          <svg className="bg-red-500" role="presentation" aria-hidden="true">
             <use href="/icons.svg#social-icon"></use>
           </svg>
           <h2>Connect with us</h2>
