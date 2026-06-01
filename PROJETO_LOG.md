@@ -180,6 +180,88 @@
 
 ---
 
+<a name="sprint-3"></a>
+## Sprint 3 — LanguageContext, Traduções e Navbar
+
+**Período:** 01/06/2026
+**Objetivo:** Implementar o sistema de idiomas e a navegação base do portfolio.
+**Branch:** `main`
+
+---
+
+### Log 10 — TypeScript strict mode
+
+- **O quê:** Adicionado `"strict": true` no `tsconfig.app.json`
+- **Por quê:** Ativa verificações críticas: tipos nulos, tipos implícitos, entre outros. Padrão de projetos profissionais.
+- **Validação:** `npx tsc --noEmit` sem erros ✅
+
+---
+
+### Log 11 — Tipo Language
+
+- **O quê:** Criado `src/types/language.ts` com `export type Language = 'pt-BR' | 'en'`
+- **Por quê:** Contrato TypeScript que garante que só esses dois valores são aceitos em todo o projeto
+- **Lição:** Tipos ficam em `types/` — não em `hooks/` (comportamento) nem em `data/` (conteúdo)
+
+---
+
+### Log 12 — LanguageContext
+
+- **O quê:** Criado `src/context/LanguageContext.tsx` com Context, Provider e hook
+- **Estrutura:**
+  - `LanguageContext` — o context em si com `createContext`
+  - `LanguageProvider` — envolve a aplicação e fornece `language` e `setLanguage`
+  - `useLanguage()` — hook de acesso com guard (erro se usado fora do Provider)
+- **Lição:** `useLanguage` só funciona dentro do `LanguageProvider` — por isso `AppContent` é um componente filho separado do `App`
+
+---
+
+### Log 13 — Tela de seleção de idioma
+
+- **O quê:** Criado `src/components/sections/LanguageSelect.tsx`
+- **Comportamento:** Exibe pergunta nos dois idiomas simultaneamente, dois botões chamam `setLanguage`
+- **Fluxo:** `language === null` → LanguageSelect / `language !== null` → Portfolio
+- **Sem persistência:** Reload reseta para a tela de seleção (comportamento intencional)
+
+---
+
+### Log 14 — Arquivos de tradução
+
+- **O quê:** Criados `src/data/translations/en.ts`, `pt-BR.ts` e `index.ts`
+- **Estrutura:** Objeto `translations` mapeia `'en' → en` e `'pt-BR' → ptBR`
+- **Uso:** `const t = translations[language!].nav` — acesso tipado aos textos
+- **Lição:** Nomes de variáveis não podem ter hífen em JS — `pt-BR.ts` exporta como `ptBR`
+
+---
+
+### Log 15 — Design tokens
+
+- **O quê:** Paleta de cores definida em `src/index.css` via `@theme` do Tailwind v4
+- **Referência:** Mesma paleta do projeto Steam STVN OLED UI (consistência visual entre projetos)
+- **Tokens:** `--color-background`, `--color-surface`, `--color-surface-alt`, `--color-primary`, `--color-secondary`, `--color-text`, `--color-text-secondary`, `--color-text-tertiary`, `--color-border`
+- **Uso no Tailwind:** `bg-primary`, `text-secondary`, `bg-surface` etc.
+
+---
+
+### Log 16 — Navbar
+
+- **O quê:** Criado `src/components/ui/Navbar.tsx`
+- **Funcionalidades:** Links de âncora para todas as seções, nome à esquerda, links à direita, hover com `text-primary`
+- **Dados:** Textos vindos de `translations[language!].nav` — muda automaticamente com o idioma
+- **Posição:** `fixed top-0` — fica visível durante o scroll
+- **Analogia:** Móvel (`ui/`) — reutilizável, não é uma seção do portfolio
+
+---
+
+**✅ Sprint 3 Concluída**
+- TypeScript strict mode ativo
+- Sistema de idiomas funcionando (Context + tela de seleção)
+- Traduções PT-BR e EN estruturadas
+- Design tokens aplicados
+- Navbar funcional com links e traduções
+
+---
+
 ## PRÓXIMAS SPRINTS (BACKLOG)
 
 | Sprint | Objetivo | Prioridade |
