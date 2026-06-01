@@ -29,7 +29,7 @@ export function Navbar({ visible }: NavbarProps) {
         {/* Clicar no nome volta para o Hero */}
         <button
           onClick={() => setCurrentSection('hero')}
-          className="text-text font-semibold hover:text-primary transition-colors"
+          className="text-text font-semibold hover:text-primary transition-colors cursor-pointer"
         >
           Rafael Stevanato
         </button>
@@ -39,7 +39,7 @@ export function Navbar({ visible }: NavbarProps) {
             <li key={section}>
               <button
                 onClick={() => setCurrentSection(section)}
-                className={`transition-colors ${
+                className={`transition-colors cursor-pointer ${
                   currentSection === section
                     ? 'text-primary'
                     : 'text-text-secondary hover:text-primary'

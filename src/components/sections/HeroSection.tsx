@@ -32,7 +32,7 @@ export function HeroSection() {
           <button
             key={section}
             onClick={() => setCurrentSection(section)}
-            className="px-5 py-2 rounded-full border border-border text-text-secondary hover:border-primary hover:text-primary transition-colors"
+            className="px-5 py-2 rounded-full border border-border text-text-secondary hover:border-primary hover:text-primary transition-colors cursor-pointer"
           >
             {label}
           </button>
