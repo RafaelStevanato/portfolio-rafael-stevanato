@@ -1,30 +1,54 @@
 import { useLanguage } from '../../context/LanguageContext'
 import { translations } from '../../data/translations'
+import type { Section } from '../../context/LanguageContext'
 
-export function Navbar() {
-  // Acessa o idioma atual do Context
-  const { language } = useLanguage()
+interface NavbarProps {
+  visible: boolean
+}
 
-  // Busca os textos de navegação no idioma correto
-  // O "!" garante ao TypeScript que language não é null aqui
+export function Navbar({ visible }: NavbarProps) {
+  const { language, currentSection, setCurrentSection } = useLanguage()
   const t = translations[language!].nav
 
+  const links: { section: Section; label: string }[] = [
+    { section: 'hero',            label: t.about },
+    { section: 'stack',           label: t.stack },
+    { section: 'projects',        label: t.projects },
+    { section: 'experience',      label: t.experience },
+    { section: 'education',       label: t.education },
+    { section: 'certifications',  label: t.certifications },
+    { section: 'contact',         label: t.contact },
+  ]
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background border-b border-border transition-all duration-300 ${
+      visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+    }`}>
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
 
-        {/* Nome/logo à esquerda */}
-        <span className="text-text font-semibold">Rafael Stevanato</span>
+        {/* Clicar no nome volta para o Hero */}
+        <button
+          onClick={() => setCurrentSection('hero')}
+          className="text-text font-semibold hover:text-primary transition-colors"
+        >
+          Rafael Stevanato
+        </button>
 
-        {/* Links de navegação à direita */}
         <ul className="flex gap-6">
-          <li><a href="#hero" className="text-text-secondary hover:text-primary transition-colors">{t.about}</a></li>
-          <li><a href="#stack" className="text-text-secondary hover:text-primary transition-colors">{t.stack}</a></li>
-          <li><a href="#projects" className="text-text-secondary hover:text-primary transition-colors">{t.projects}</a></li>
-          <li><a href="#experience" className="text-text-secondary hover:text-primary transition-colors">{t.experience}</a></li>
-          <li><a href="#education" className="text-text-secondary hover:text-primary transition-colors">{t.education}</a></li>
-          <li><a href="#certifications" className="text-text-secondary hover:text-primary transition-colors">{t.certifications}</a></li>
-          <li><a href="#contact" className="text-text-secondary hover:text-primary transition-colors">{t.contact}</a></li>
+          {links.map(({ section, label }) => (
+            <li key={section}>
+              <button
+                onClick={() => setCurrentSection(section)}
+                className={`transition-colors ${
+                  currentSection === section
+                    ? 'text-primary'
+                    : 'text-text-secondary hover:text-primary'
+                }`}
+              >
+                {label}
+              </button>
+            </li>
+          ))}
         </ul>
 
       </div>

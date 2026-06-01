@@ -1,21 +1,35 @@
 import { useLanguage } from './context/LanguageContext'
 import { LanguageSelect } from './components/sections/LanguageSelect'
 import { Navbar } from './components/ui/Navbar'
+import { HeroSection } from './components/sections/HeroSection'
 
 export function AppContent() {
-  // Acessa o idioma atual — null significa nenhum selecionado ainda
-  const { language } = useLanguage()
+  const { language, currentSection } = useLanguage()
 
-  // Enquanto nenhum idioma foi selecionado, mostra a tela de seleção
   if (language === null) {
     return <LanguageSelect />
   }
 
-  // Idioma selecionado — mostra o portfolio com a Navbar
+  const renderSection = () => {
+    switch (currentSection) {
+      case 'hero':           return <HeroSection />
+      case 'stack':          return <div>Stack</div>
+      case 'projects':       return <div>Projetos</div>
+      case 'experience':     return <div>Experiência</div>
+      case 'education':      return <div>Formação</div>
+      case 'certifications': return <div>Certificações</div>
+      case 'contact':        return <div>Contato</div>
+    }
+  }
+
   return (
     <>
-      <Navbar />
-      <div>Portfolio</div>
+      <Navbar visible={currentSection !== 'hero'} />
+
+      {/* Fade in suave ao trocar de seção */}
+      <div key={currentSection} className="animate-fade-in">
+        {renderSection()}
+      </div>
     </>
   )
 }

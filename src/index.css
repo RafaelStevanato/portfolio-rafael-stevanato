@@ -11,3 +11,12 @@
   --color-text-tertiary: #808080;
   --color-border: #ffffff10;
 }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.3s ease-in-out 0.1s both;
+}
