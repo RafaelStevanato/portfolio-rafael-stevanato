@@ -1,6 +1,13 @@
+import { LanguageProvider } from './context/LanguageContext'
+import { AppContent } from './AppContent'
+
 function App() {
   return (
-    <div>Testando</div>
+    // Provider envolve tudo
+    <LanguageProvider>
+      {/* AppContent fica dentro do Provider — pode usar useLanguage */}
+      <AppContent />
+    </LanguageProvider>
   )
 }
 
